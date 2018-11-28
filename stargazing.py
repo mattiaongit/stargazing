@@ -31,7 +31,7 @@ def request(url, params, headers=None):
 	if headers:
 		req.add_header(*headers)
 	response = urlopen(req)
-	return json.loads(response.read())
+	return json.loads(response.read().decode('utf-8'))
 
 
 def initialize_csv(file_obj, column_names):
