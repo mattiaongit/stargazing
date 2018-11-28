@@ -1,0 +1,8 @@
+{
+  "ACCESS_TOKEN": "Y0UR4CC3ST0K3N see https://github.com/settings/tokens",
+  "REPOSITORY_NAME": "mattiaongit/profilematching",
+  "FIELDS_TO_EXTRACT": ["id", "username", "name", "email", "location", "company",
+                       "followers", "following", "public_repos", "created_at",
+                       "star_time", "url"],
+  "EXPORT_FILE_NAME": "{0}-stargazers.csv"
+}
