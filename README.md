@@ -6,7 +6,7 @@ This simple script allow to fetch stargazer information of a Github repository.
 
 Run:
 ```bash
-python stargazing.py --acces_token <your_access_token> --repository <repository_name>
+python stargazing.py --access_token <your_access_token> --repository <repository_name>
 ```
 
 This would generate a .csv (`<repository_name>-stargazers.csv`) file with all the repository stargazer information.
