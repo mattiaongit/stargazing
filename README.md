@@ -13,7 +13,7 @@ python stargazing.py --acces_token <your_access_token> --repository <repository_
 
 This would generate a .csv (`<repository_name>-stargazers.csv`) file with all the repository stargazer information.
 
-## Access acces_token
+## Access token
 Fetch your access token from [here](https://github.com/settings/tokens)  (https://github.com/settings/tokens)
 
 
