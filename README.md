@@ -21,10 +21,10 @@ Fetch your access token from [here](https://github.com/settings/tokens)  (https:
 The repository name should be expressed in the form
 profile/repostory. For example, if you wanted to fetch the stargazer of this repository (a gazillion, soon!) that would be `mattiaongit/stargazing`
 
-## Additional cofiguration
+## Additional configuration
 
 Additional configuration are possible via the
-- `confing.json` file
+- `config.json` file
 
 Here you could setup
 
