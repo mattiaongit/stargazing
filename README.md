@@ -28,9 +28,8 @@ Additional configuration are possible via the
 
 Here you could setup
 
-- Stargazer field to fetched*
+- Stargazer field to fetch*
 - Output file name
-
 *
 By default the following fields are fetched:
 ```python
