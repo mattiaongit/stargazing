@@ -43,34 +43,34 @@ def write_csv_row(csv_file, row_data):
 	csv_file.writerow(row_data)
 
 def fetch_stars(repository_name, list_stars=[], page_number=0):
+	while True:
+		print("Gathering Stargazers for {0}, page {1}".format(REPO, page_number))
 
-	print("Gathering Stargazers for {0}, page {1}".format(REPO, page_number))
+		query_url = GITHUB_ENTRY_POINT + \
+					STARGAZER_ENDPOINT.format(repository_name)
 
-	query_url = GITHUB_ENTRY_POINT + \
-				STARGAZER_ENDPOINT.format(repository_name)
+		params = {'page': page_number, 'access_token': ACCESS_TOKEN}
+		headers = ('Accept', 'application/vnd.github.v3.star+json')
 
-	params = {'page': page_number, 'access_token': ACCESS_TOKEN}
-	headers = ('Accept', 'application/vnd.github.v3.star+json')
+		data = request(query_url, params, headers)
 
-	data = request(query_url, params, headers)
+		for user in data:
+			username = user['user']['login']
+			star_time = datetime.datetime.strptime(
+			    user['starred_at'], '%Y-%m-%dT%H:%M:%SZ')
+			star_time = star_time.strftime('%Y-%m-%d %H:%M:%S')
+			list_stars.append((username, star_time))
 
-	for user in data:
-		username = user['user']['login']
-		star_time = datetime.datetime.strptime(
-		    user['starred_at'], '%Y-%m-%dT%H:%M:%SZ')
-		star_time = star_time.strftime('%Y-%m-%d %H:%M:%S')
-		list_stars.append((username, star_time))
+		#if we hit the last page, return the results list
+		if len(data) == 0:
+			list_stars = list(set(list_stars))  # remove dupes
+			print("Done Gathering Stargazers for ", REPO)
+			print("Now Gathering Stargazers' GitHub Profiles...")
+			break
+		else:
+			page_number=page_number +1
 
-	#if we hit the last page, return the results list
-	if len(data) == 0:
-		list_stars = list(set(list_stars))  # remove dupes
-		print("Done Gathering Stargazers for ", REPO)
-		print("Now Gathering Stargazers' GitHub Profiles...")
-		return list_stars
-
-	# else go to next page
-	else:
-		return fetch_stars(repository_name, list_stars=list_stars, page_number=page_number + 1)
+	return list_stars
 
 def fetch_and_write_user_to_csv(users_list, repository_name):
 	users_processed = 0
